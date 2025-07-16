@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
 
@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return send_from_directory(app.static_folder, 'index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/api/test', methods=['GET'])
 def test():
@@ -46,4 +46,4 @@ def get_logs():
     } for log in logs])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

@@ -168,11 +168,11 @@
 
       window.myChart = new Chart(ctx, {
         type: 'bar',
-         {
+        data:  {
           labels: ['Total Waste Diverted'],
           datasets: [{
             label: 'Compost Weight (kg)',
-             [totalWeight],
+            data:  [totalWeight],
             backgroundColor: '#4caf50'
           }]
         },
