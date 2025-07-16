@@ -35,67 +35,7 @@ NutriCycle is a non-profit initiative designed to reduce organic waste through c
 ---
 
 ## 📦 Folder Structure
-profile
-Qwen3-235B-A22B
-🔥 Awesome job getting this far!
-You’ve added your NutriCycle.pdf to the static/ folder and now you’re ready to update your README.md , link to your PDF, and make your project look professional and job-ready .
 
-✅ Goal
-Make a full, updated README.md that includes:
-A project summary
-How to run locally
-How to deploy online
-A link to your NutriCycle.pdf
-Your resume-style project goals
-📄 Final README.md (All-in-One File)
-Copy and paste this full README into your project:
-
-markdown
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-⌄
-⌄
-⌄
-⌄
-⌄
 # 🌱 NutriCycle – Community Composting Tracker
 
 A full-stack web app that helps communities track composting efforts to reduce landfill waste. Built with **Python (Flask)**, **SQLite**, and **HTML/CSS/JS**.
@@ -106,7 +46,7 @@ NutriCycle is a non-profit initiative designed to reduce organic waste through c
 
 ## 📄 Download Full Report
 
-📄 [Read the NutriCycle 10-page PDF Report](NutriCycle.pdf)
+📄 [Read the NutriCycle 17-page PDF Report](NutriCycle.pdf)
 
 ---
 
