@@ -8,8 +8,7 @@ NutriCycle is a non-profit initiative designed to reduce organic waste through c
 
 ## 📄 Download Full Report
 
-📄 [Read the NutriCycle 17-page PDF Report](NutriCycle.pdf)
-
+📄 [Read the NutriCycle 17-page PDF Report](https://github.com/aaravraina3/NutriCycle/raw/main/backend/static/NutriCycle.pdf )
 ---
 
 ## 🧾 Features
