@@ -50,6 +50,30 @@ def get_logs():
         "timestamp": log[3]
     } for log in logs])
 
+
+
+@app.route('/api/logs/<int:log_id>', methods=['DELETE'])
+def delete_log(log_id):
+    try:
+        conn = sqlite3.connect('compost.db')
+        cursor = conn.cursor()
+        
+        # Check if log exists
+        cursor.execute('SELECT * FROM compost_logs WHERE id = ?', (log_id,))
+        if not cursor.fetchone():
+            conn.close()
+            return jsonify({"status": "error", "message": "Log not found"}), 404
+        
+        # Delete the log
+        cursor.execute('DELETE FROM compost_logs WHERE id = ?', (log_id,))
+        conn.commit()
+        conn.close()
+        
+        return jsonify({"status": "success", "message": "Log deleted"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
 if __name__ == '__main__':
     # THIS IS THE KEY CHANGE - USE PORT FROM ENVIRONMENT OR 8000
     port = int(os.environ.get('PORT', 8000))
