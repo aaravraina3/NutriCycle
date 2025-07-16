@@ -9,13 +9,19 @@
       font-family: Arial, sans-serif;
       background-color: #f4ffe4;
       margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    main {
       padding: 2rem;
     }
-    h1 {
-      color: #2e7d32;
-    }
     form {
-      margin-bottom: 2rem;
+      margin-top: 2rem;
     }
     input, button {
       padding: 0.5rem;
@@ -33,22 +39,43 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+    .about {
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
 
-  <h1>🌱 NutriCycle Compost Tracker</h1>
+  <header>
+    <h1>🌱 NutriCycle</h1>
+    <p>Empowering Communities Through Sustainable Composting</p>
+  </header>
 
-  <form id="compost-form">
-    <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required />
-    <input type="text" id="location" placeholder="Location" required />
-    <button type="submit">Add Compost</button>
-  </form>
+  <main>
+    <div class="about">
+      <h2>About NutriCycle</h2>
+      <p>
+        NutriCycle is a community-driven initiative designed to reduce organic waste by promoting composting at homes, schools, and businesses.
+        Our goal is to turn food scraps and yard waste into nutrient-rich soil while educating people about sustainable living.
+      </p>
+      <h2>Submit New Compost Log</h2>
+    </div>
 
-  <h2>Recent Logs</h2>
-  <ul id="log-list">
-    <!-- Logs will appear here -->
-  </ul>
+    <form id="compost-form">
+      <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required />
+      <input type="text" id="location" placeholder="Location" required />
+      <button type="submit">Add Compost</button>
+    </form>
+
+    <div class="about">
+      <h2>Recent Logs</h2>
+    </div>
+    <ul id="log-list">
+      <!-- Logs will appear here -->
+    </ul>
+  </main>
 
   <script>
     const API_URL = 'http://localhost:5000/api';
