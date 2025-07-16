@@ -14,6 +14,10 @@ def home():
 def test():
     return jsonify({"message": "Backend is running!"})
 
+@app.route('/report')
+def serve_pdf():
+    return app.send_static_file('NutriCycle.pdf')
+
 @app.route('/api/log', methods=['POST'])
 def log_compost():
     data = request.get_json()

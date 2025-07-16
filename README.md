@@ -8,9 +8,10 @@ Check it out! Here: https://nutricycle.onrender.com/
 
 ---
 
-## 📄 Download Full Report
+## 📄 Project Documentation
 
-📄 [Read the NutriCycle 17-page PDF Report](https://github.com/aaravraina3/NutriCycle/raw/main/backend/static/NutriCycle.pdf )
+**[📄 View the NutriCycle Report (PDF)](https://nutricycle.onrender.com/report)**
+
 ---
 
 ## 🧾 Features

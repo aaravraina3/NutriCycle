@@ -3,223 +3,477 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NutriCycle</title>
+  <title>NutriCycle - Community Composting Tracker</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4ffe4;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    header {
-      background-color: #2e7d32;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-    }
-    form {
-      margin-top: 2rem;
-    }
-    input, button {
-      padding: 0.5rem;
-      margin-right: 1rem;
-      font-size: 1rem;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      background-color: #e8f5e9;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .about {
-      max-width: 800px;
-      margin: auto;
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f0f7f0;
+      color: #2d3e2d;
       line-height: 1.6;
     }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>🌱 NutriCycle</h1>
-    <p>Empowering Communities Through Sustainable Composting</p>
-  </header>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NutriCycle – Community Composting Tracker</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4ffe4;
-      margin: 0;
-      padding: 2rem;
-    }
+    
     header {
-      background-color: #2e7d32;
+      background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
       color: white;
       padding: 2rem;
       text-align: center;
-      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    
+    .stat-card h3 {
+      color: #666;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-card .value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    
+    .form-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       margin-bottom: 2rem;
     }
-    main {
-      max-width: 800px;
-      margin: auto;
+    
+    .form-section h2 {
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
     }
+    
     form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+    }
+    
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-group {
       display: flex;
       flex-direction: column;
     }
-    input, button {
-      padding: 0.5rem;
-      margin-bottom: 1rem;
+    
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    
+    input {
+      padding: 0.75rem;
       font-size: 1rem;
-      width: 100%;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: border-color 0.2s;
     }
-    .stats {
-      background-color: #e8f5e9;
-      padding: 1rem;
-      border-radius: 5px;
-      margin-top: 2rem;
+    
+    input:focus {
+      outline: none;
+      border-color: #43a047;
     }
-    ul {
-      list-style-type: none;
-      padding: 0;
+    
+    button {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: #43a047;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    li {
-      background-color: #e8f5e9;
+    
+    button:hover {
+      background: #388e3c;
+    }
+    
+    button:active {
+      transform: scale(0.98);
+    }
+    
+    .logs-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .logs-section h2 {
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+    }
+    
+    #logsList {
+      list-style: none;
+    }
+    
+    .log-item {
+      background: #f8faf8;
       margin-bottom: 1rem;
-      padding: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #43a047;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
     }
-
-    @media (min-width: 600px) {
-      form {
-        flex-direction: row;
-      }
-      input {
-        margin-right: 1rem;
-        width: 40%;
-      }
-      button {
-        width: auto;
-      }
+    
+    .log-item:hover {
+      background: #f0f7f0;
+      transform: translateX(4px);
+    }
+    
+    .log-info {
+      flex: 1;
+    }
+    
+    .log-weight {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-bottom: 0.25rem;
+    }
+    
+    .log-location {
+      color: #666;
+      margin-bottom: 0.25rem;
+    }
+    
+    .log-date {
+      font-size: 0.85rem;
+      color: #999;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #999;
+    }
+    
+    .about-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-top: 2rem;
+      line-height: 1.8;
+    }
+    
+    .about-section h2 {
+      color: #2e7d32;
+      margin-bottom: 1rem;
+    }
+    
+    .about-section a {
+      color: #43a047;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .about-section a:hover {
+      text-decoration: underline;
+    }
+    
+    .error {
+      background: #ffebee;
+      color: #c62828;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    
+    .success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🌱 NutriCycle</h1>
+    <p>Community Composting Tracker - Reducing Waste, Growing Together</p>
+  </header>
 
- <main>
-
-    <div class="about">
-      <h2>Submit New Compost Log</h2>
+  <div class="container">
+    <!-- Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Compost</h3>
+        <div class="value" id="totalWeight">0 kg</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Entries</h3>
+        <div class="value" id="totalEntries">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>CO₂ Reduced</h3>
+        <div class="value" id="co2Reduced">0 kg</div>
+      </div>
     </div>
 
-    <form id="compost-form">
-      <input type="number" id="weight" placeholder="Weight in kg" step="0.1" required />
-      <input type="text" id="location" placeholder="Location (e.g., School Garden)" required />
-      <button type="submit">Add Compost</button>
-    </form>
-
-    <div class="stats">
-      <h2>🌍 Project Impact</h2>
-      <p><strong>Total Waste Diverted:</strong> <span id="total-weight">0.0</span> kg</p>
-      <p><strong>Total Logs:</strong> <span id="log-count">0</span></p>
-      <canvas id="chart" height="100"></canvas>
+    <!-- Form Section -->
+    <div class="form-section">
+      <h2>📝 Log Your Compost</h2>
+      <div class="error" id="errorMessage"></div>
+      <div class="success" id="successMessage"></div>
+      
+      <form id="compostForm">
+        <div class="form-group">
+          <label for="weight">Weight (kg)</label>
+          <input 
+            type="number" 
+            id="weight" 
+            name="weight" 
+            step="0.1" 
+            min="0.1" 
+            required 
+            placeholder="e.g., 2.5"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input 
+            type="text" 
+            id="location" 
+            name="location" 
+            required 
+            placeholder="e.g., Community Garden"
+          />
+        </div>
+        
+        <button type="submit">Add Entry</button>
+      </form>
     </div>
 
-    <h2>Recent Logs</h2>
-    <ul id="log-list">
-      <!-- Logs will appear here -->
-    </ul>
+    <!-- Logs Section -->
+    <div class="logs-section">
+      <h2>📊 Recent Compost Logs</h2>
+      <ul id="logsList">
+        <li class="empty-state">No compost logs yet. Start tracking your composting journey!</li>
+      </ul>
+    </div>
 
-  </main>
+    <!-- About Section -->
+    <div class="about-section">
+      <h2>About NutriCycle</h2>
+      <p>
+        NutriCycle is a community-driven initiative designed to reduce organic waste through composting. 
+        Our mission is to help communities track their environmental impact and build a more sustainable future.
+      </p>
+      <p>
+        <a href="/report" target="_blank">📄 Download our full report (PDF)</a>
+      </p>
+    </div>
+  </div>
 
   <script>
-    let chart;
+    // API base URL - uses relative paths so it works everywhere
+    const API_BASE = '';
 
-    async function updateDashboard() {
-      const res = await fetch('http://localhost:5000/api/logs');
-      const logs = await res.json();
+    // Show error message
+    function showError(message) {
+      const errorEl = document.getElementById('errorMessage');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+      setTimeout(() => errorEl.style.display = 'none', 5000);
+    }
 
+    // Show success message
+    function showSuccess(message) {
+      const successEl = document.getElementById('successMessage');
+      successEl.textContent = message;
+      successEl.style.display = 'block';
+      setTimeout(() => successEl.style.display = 'none', 3000);
+    }
+
+    // Format date nicely
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    // Update statistics
+    function updateStats(logs) {
       const totalWeight = logs.reduce((sum, log) => sum + log.weight, 0);
-      document.getElementById('total-weight').textContent = totalWeight.toFixed(1);
-      document.getElementById('log-count').textContent = logs.length;
+      const totalEntries = logs.length;
+      const co2Reduced = (totalWeight * 0.89).toFixed(1); // Approximate CO2 reduction factor
 
-      const ctx = document.getElementById('chart').getContext('2d');
-      if (window.myChart) {
-        window.myChart.data.datasets[0].data = [totalWeight];
-        window.myChart.update();
+      document.getElementById('totalWeight').textContent = `${totalWeight.toFixed(1)} kg`;
+      document.getElementById('totalEntries').textContent = totalEntries;
+      document.getElementById('co2Reduced').textContent = `${co2Reduced} kg`;
+    }
+
+    // Fetch and display logs
+    async function fetchLogs() {
+      try {
+        console.log('Fetching logs...');
+        const response = await fetch(`${API_BASE}/api/logs`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const logs = await response.json();
+        console.log('Received logs:', logs);
+        
+        const logsList = document.getElementById('logsList');
+        
+        if (logs.length === 0) {
+          logsList.innerHTML = '<li class="empty-state">No compost logs yet. Start tracking your composting journey!</li>';
+          updateStats([]);
+          return;
+        }
+        
+        logsList.innerHTML = logs.map(log => `
+          <li class="log-item">
+            <div class="log-info">
+              <div class="log-weight">${log.weight} kg</div>
+              <div class="log-location">📍 ${log.location}</div>
+              <div class="log-date">${formatDate(log.timestamp)}</div>
+            </div>
+          </li>
+        `).join('');
+        
+        updateStats(logs);
+      } catch (error) {
+        console.error('Error fetching logs:', error);
+        showError('Failed to load compost logs. Please try again.');
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('compostForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const weight = parseFloat(document.getElementById('weight').value);
+      const location = document.getElementById('location').value.trim();
+      
+      if (!weight || weight <= 0) {
+        showError('Please enter a valid weight.');
         return;
       }
-
-      window.myChart = new Chart(ctx, {
-        type: 'bar',
-        data:  {
-          labels: ['Total Waste Diverted'],
-          datasets: [{
-            label: 'Compost Weight (kg)',
-            data:  [totalWeight],
-            backgroundColor: '#4caf50'
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: { beginAtZero: true }
-          }
+      
+      if (!location) {
+        showError('Please enter a location.');
+        return;
+      }
+      
+      try {
+        console.log('Submitting:', { weight, location });
+        const response = await fetch(`${API_BASE}/api/log`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ weight, location })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      });
-    }
-
-    async function fetchLogs() {
-      const res = await fetch('http://localhost:5000/api/logs');
-      const logs = await res.json();
-
-      const logList = document.getElementById('log-list');
-      logList.innerHTML = '';
-
-      logs.forEach(log => {
-        const li = document.createElement('li');
-        li.textContent = `${log.weight} kg added at ${log.location} on ${new Date(log.timestamp).toLocaleString()}`;
-        logList.appendChild(li);
-      });
-
-      updateDashboard();
-    }
-
-    document.getElementById('compost-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const weight = parseFloat(document.getElementById('weight').value);
-      const location = document.getElementById('location').value;
-
-      await fetch('http://localhost:5000/api/log', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ weight, location })
-      });
-
-      document.getElementById('weight').value = '';
-      document.getElementById('location').value = '';
-      fetchLogs();
+        
+        const result = await response.json();
+        console.log('Log added:', result);
+        
+        showSuccess('Compost entry added successfully!');
+        
+        // Clear form
+        document.getElementById('compostForm').reset();
+        
+        // Refresh logs
+        fetchLogs();
+      } catch (error) {
+        console.error('Error adding log:', error);
+        showError('Failed to add compost entry. Please try again.');
+      }
     });
 
-    // Initial load
-    fetchLogs();
-  </script>
+    // Test API connection on load
+    async function testConnection() {
+      try {
+        const response = await fetch(`${API_BASE}/api/test`);
+        const data = await response.json();
+        console.log('API Test:', data);
+      } catch (error) {
+        console.error('API connection test failed:', error);
+      }
+    }
 
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Page loaded, initializing...');
+      testConnection();
+      fetchLogs();
+    });
+  </script>
 </body>
 </html>
