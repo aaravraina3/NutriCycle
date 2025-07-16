@@ -2,7 +2,7 @@
 
 A full-stack web app that helps communities track composting efforts to reduce landfill waste. Built with **Python (Flask)**, **SQLite**, and **HTML/CSS/JS**.
 
-NutriCycle is a non-profit initiative designed to reduce organic waste through community composting. This project is led by students from Trumbull High FBLA and the Environmental Club.
+NutriCycle is a non-profit initiative designed to reduce organic waste through community composting. This project is led by students from Trumbull and the Environmental Club.
 
 Check it out! Here: https://nutricycle.onrender.com/
 
