@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
+import os
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
@@ -46,4 +47,6 @@ def get_logs():
     } for log in logs])
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    # THIS IS THE KEY CHANGE - USE PORT FROM ENVIRONMENT OR 8000
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port, debug=True)
