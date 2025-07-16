@@ -52,36 +52,146 @@
     <h1>🌱 NutriCycle</h1>
     <p>Empowering Communities Through Sustainable Composting</p>
   </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NutriCycle – Community Composting Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4ffe4;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .stats {
+      background-color: #e8f5e9;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 2rem;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #e8f5e9;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (min-width: 600px) {
+      form {
+        flex-direction: row;
+      }
+      input {
+        margin-right: 1rem;
+        width: 40%;
+      }
+      button {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌱 NutriCycle</h1>
+    <p>Tracking Community Composting Efforts to Reduce Waste</p>
+  </header>
 
   <main>
+
     <div class="about">
-      <h2>About NutriCycle</h2>
-      <p>
-        NutriCycle is a community-driven initiative designed to reduce organic waste by promoting composting at homes, schools, and businesses.
-        Our goal is to turn food scraps and yard waste into nutrient-rich soil while educating people about sustainable living.
-      </p>
       <h2>Submit New Compost Log</h2>
     </div>
 
     <form id="compost-form">
-      <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required />
-      <input type="text" id="location" placeholder="Location" required />
+      <input type="number" id="weight" placeholder="Weight in kg" step="0.1" required />
+      <input type="text" id="location" placeholder="Location (e.g., School Garden)" required />
       <button type="submit">Add Compost</button>
     </form>
 
-    <div class="about">
-      <h2>Recent Logs</h2>
+    <div class="stats">
+      <h2>🌍 Project Impact</h2>
+      <p><strong>Total Waste Diverted:</strong> <span id="total-weight">0.0</span> kg</p>
+      <p><strong>Total Logs:</strong> <span id="log-count">0</span></p>
+      <canvas id="chart" height="100"></canvas>
     </div>
+
+    <h2>Recent Logs</h2>
     <ul id="log-list">
       <!-- Logs will appear here -->
     </ul>
+
   </main>
 
   <script>
-    const API_URL = 'http://localhost:5000/api';
+    let chart;
+
+    async function updateDashboard() {
+      const res = await fetch('http://localhost:5000/api/logs');
+      const logs = await res.json();
+
+      const totalWeight = logs.reduce((sum, log) => sum + log.weight, 0);
+      document.getElementById('total-weight').textContent = totalWeight.toFixed(1);
+      document.getElementById('log-count').textContent = logs.length;
+
+      const ctx = document.getElementById('chart').getContext('2d');
+      if (window.myChart) {
+        window.myChart.data.datasets[0].data = [totalWeight];
+        window.myChart.update();
+        return;
+      }
+
+      window.myChart = new Chart(ctx, {
+        type: 'bar',
+         {
+          labels: ['Total Waste Diverted'],
+          datasets: [{
+            label: 'Compost Weight (kg)',
+             [totalWeight],
+            backgroundColor: '#4caf50'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
 
     async function fetchLogs() {
-      const res = await fetch(`${API_URL}/logs`);
+      const res = await fetch('http://localhost:5000/api/logs');
       const logs = await res.json();
 
       const logList = document.getElementById('log-list');
@@ -92,6 +202,8 @@
         li.textContent = `${log.weight} kg added at ${log.location} on ${new Date(log.timestamp).toLocaleString()}`;
         logList.appendChild(li);
       });
+
+      updateDashboard();
     }
 
     document.getElementById('compost-form').addEventListener('submit', async (e) => {
@@ -99,7 +211,7 @@
       const weight = parseFloat(document.getElementById('weight').value);
       const location = document.getElementById('location').value;
 
-      await fetch(`${API_URL}/log`, {
+      await fetch('http://localhost:5000/api/log', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ weight, location })
@@ -110,7 +222,7 @@
       fetchLogs();
     });
 
-    // Load logs on startup
+    // Initial load
     fetchLogs();
   </script>
 
