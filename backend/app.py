@@ -1,3 +1,7 @@
+from flask_cors import CORS
+app = Flask(__name__, static_folder='static')
+CORS(app)
+
 from flask import Flask, request, jsonify, send_from_directory
 import sqlite3
 from flask_cors import CORS
