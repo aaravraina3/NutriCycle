@@ -34,8 +34,6 @@ NutriCycle is a non-profit initiative designed to reduce organic waste through c
 
 ---
 
-## 📦 Folder Structure
-
 # 🌱 NutriCycle – Community Composting Tracker
 
 A full-stack web app that helps communities track composting efforts to reduce landfill waste. Built with **Python (Flask)**, **SQLite**, and **HTML/CSS/JS**.
@@ -68,24 +66,7 @@ NutriCycle is a non-profit initiative designed to reduce organic waste through c
 | Database | SQLite           |
 | Frontend | HTML, CSS, JS    |
 | Charts   | Chart.js         |
-| Hosting  | Render / Railway |
-
----
-
-## 📦 Folder Structure
-
-NutriCycle/
-├── README.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── backend/
-│ ├── app.py # Flask API server
-│ ├── database.py # SQLite setup
-│ └── requirements.txt
-└── frontend/
-└── static/
-├── index.html # Frontend UI
-└── NutriCycle.pdf # Full project report
+| Hosting  | Render|
 
 
 
