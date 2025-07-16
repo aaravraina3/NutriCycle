@@ -2,44 +2,6 @@
 
 A full-stack web app that helps communities track composting efforts to reduce landfill waste. Built with **Python (Flask)**, **SQLite**, and **HTML/CSS/JS**.
 
-NutriCycle is a non-profit initiative designed to reduce organic waste through community composting. This project is led by students from Trumbull and the Environmental Club.
-
-Check it out! Here: https://nutricycle.onrender.com/
-
----
-
-## 📄 Project Documentation
-
-**[📄 View the NutriCycle Report (PDF)](https://nutricycle.onrender.com/report)**
-
----
-
-## 🧾 Features
-
-- ✅ Submit new compost logs (weight + location)
-- ✅ View real-time list of compost entries
-- ✅ Store data in local SQLite database
-- ✅ Live dashboard showing impact stats
-- ✅ Educational tool for sustainability and environmental awareness
-
----
-
-## 🛠 Tech Stack
-
-| Layer     | Technology        |
-|----------|------------------|
-| Backend  | Flask (Python)   |
-| Database | SQLite           |
-| Frontend | HTML, CSS, JS    |
-| Charts   | Chart.js         |
-| Hosting  | Render / Railway |
-
----
-
-# 🌱 NutriCycle – Community Composting Tracker
-
-A full-stack web app that helps communities track composting efforts to reduce landfill waste. Built with **Python (Flask)**, **SQLite**, and **HTML/CSS/JS**.
-
 NutriCycle is a non-profit initiative designed to reduce organic waste through community composting. This project is led by students from Trumbull High FBLA and the Environmental Club.
 
 ---
