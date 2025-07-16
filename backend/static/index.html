@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NutriCycle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4ffe4;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      color: #2e7d32;
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #e8f5e9;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌱 NutriCycle Compost Tracker</h1>
+
+  <form id="compost-form">
+    <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required />
+    <input type="text" id="location" placeholder="Location" required />
+    <button type="submit">Add Compost</button>
+  </form>
+
+  <h2>Recent Logs</h2>
+  <ul id="log-list">
+    <!-- Logs will appear here -->
+  </ul>
+
+  <script>
+    const API_URL = 'http://localhost:5000/api';
+
+    async function fetchLogs() {
+      const res = await fetch(`${API_URL}/logs`);
+      const logs = await res.json();
+
+      const logList = document.getElementById('log-list');
+      logList.innerHTML = '';
+
+      logs.forEach(log => {
+        const li = document.createElement('li');
+        li.textContent = `${log.weight} kg added at ${log.location} on ${new Date(log.timestamp).toLocaleString()}`;
+        logList.appendChild(li);
+      });
+    }
+
+    document.getElementById('compost-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const weight = parseFloat(document.getElementById('weight').value);
+      const location = document.getElementById('location').value;
+
+      await fetch(`${API_URL}/log`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ weight, location })
+      });
+
+      document.getElementById('weight').value = '';
+      document.getElementById('location').value = '';
+      fetchLogs();
+    });
+
+    // Load logs on startup
+    fetchLogs();
+  </script>
+
+</body>
+</html>
